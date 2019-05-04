@@ -1,0 +1,22 @@
+<div class="card" style="max-width: 23rem;">
+  <img src="https://vosmarket.ru/uploads/posts/2018-03/1521706426_vosmarket_ru-ulitki.jpg" class="card-img-top" alt="...">
+  <div class="card-body">
+
+    <h5 class="card-title">
+      <%= link_to recipe.title, recipe_path(recipe) %> 
+      <% if recipe.created_at %>
+        <span class="badge badge-secondary">New</span>
+      <% end %>
+    </h5>
+
+    <p class="card-text">
+      <%= recipe.description %>
+    </p>
+  </div>
+  
+  <div class="card-footer">
+    <small class="text-muted">
+      Created: <%= recipe.created_at %> 
+      by @user</small>
+  </div>
+</div>

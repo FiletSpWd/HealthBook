@@ -1,0 +1,21 @@
+<%= form_for @recipe do |f| %>
+
+  <div class="form-group">
+    <%= f.label :title, 'Название рецепта' %>
+    <%= f.text_field :title, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :description, 'Описание' %>
+    <%= f.text_area :description, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :photo, 'Обложка' %>
+    <%= f.file_field :photo, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= f.submit 'Сохранить', class: 'btn btn-primary'%>
+  </div>
+<% end %>

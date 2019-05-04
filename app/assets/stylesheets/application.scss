@@ -12,3 +12,34 @@
  */
 
  @import "bootstrap";
+
+body{
+	margin: 5%;
+}
+
+.navbar{
+	margin-left: 5%;
+	margin-right: 5%;
+}
+
+.carousel-caption{
+	text-align: left;
+	color: black;
+}
+
+.header{
+	top:2%;
+}
+
+.d-block{
+	width: 50%;
+	height: 300px;
+}
+
+.card{
+	margin: 1%;
+}
+
+.bot{
+	margin-right: 1.2%;
+}
