@@ -1,0 +1,27 @@
+<div class="row">
+  <div class="col-sm-7" 
+    style="
+          background-image: url(https://images.unsplash.com/photo-1484412509196-57eda96981e8?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80);
+          margin-left: 15px;">
+    <div class="alert alert-success" role="alert">
+      Вы можете перетаскивать продукты из правой части экрана, которые, предположительно, 
+      есть у в наличии в зону "Кухонного стола". Если из перечня ингридиентов возможно
+      сделать блюдо, которое есть на сайте, то это блюдо отобразится в нижней левой
+      части интерфейса "Возможные блюда", в противном случае будет просто надпись. 
+    </div>
+    <div id="have_ingredients" class="dropzone">
+      <legend>Кухонный стол</legend>
+    </div>
+    <br>
+    <div class="panel panel-primary">
+      <ul id='recipes' class='list-group'>
+        <legend class="list-group-item">Возможные блюда...</legend>
+        <li class="list-group-item">Извини, возможно ты останешься голодным.</li>
+      </ul>
+    </div>
+
+  </div>
+  <div class="col-sm-4">
+    <%= render @ingredients%>
+  </div>
+</div>

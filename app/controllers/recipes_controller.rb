@@ -57,6 +57,13 @@ class RecipesController < ApplicationController
     end
   end
 
+  def what_to_cook
+    @recipes = Recipe.includes(:compositions).all
+                    .select {|i| i.compositions.map(&:ingredient_id)
+                    .to_set.subset?(params[:ingredients].to_a
+                    .map(&:to_i).to_set) }
+  end
+
   private
 
   def post_params

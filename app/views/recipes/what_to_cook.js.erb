@@ -1,0 +1,6 @@
+<% if @recipes.size > 0 %>
+  $('#recipes').html('<%= j render @recipes %>');
+<% else %>
+  $('#recipes').html('Sorry, you may go hungry...');
+}); 
+<% end %>

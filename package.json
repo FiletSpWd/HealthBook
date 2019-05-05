@@ -1,5 +1,7 @@
 {
   "name": "HealthBook",
   "private": true,
-  "dependencies": {}
+  "dependencies": {
+    "interactjs": "^1.4.0"
+  }
 }
