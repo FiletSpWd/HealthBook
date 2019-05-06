@@ -9,4 +9,14 @@ class Recipe < ApplicationRecord
   def self.no_published
 	self.where('published = false')
   end
+
+  def all_products
+    self.ingredients.map(&:title).join(', ')
+  end
+
+  def all_products=(names)
+    self.ingredients = names.split(',').map do |name|
+      Ingredient.where(title: name.strip).first
+    end
+  end
 end
