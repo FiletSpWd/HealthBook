@@ -13,6 +13,17 @@ at <%= @recipe.created_at.strftime('%B %d, %Y %H:%M') %>
     <img src="https://vosmarket.ru/uploads/posts/2018-03/1521706426_vosmarket_ru-ulitki.jpg" class="card-img-top" alt="...">
   </div>
   <div class="col-sm-6">
-    <%= @recipe.description.html_safe %>
+    <ul class="compositions">
+      <% @recipe.ingredients.each do |ingredient| %>
+        <li>
+          <div class="ingredient"><%= ingredient.title %></div>
+          <div class="ingredient-value">2 kg</div>
+        </li>
+      <% end %>
+    </ul>
   </div>
+</div>
+
+<div class="jumbotron">    
+  <%= @recipe.description.html_safe %>
 </div>

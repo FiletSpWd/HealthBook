@@ -1,22 +1,33 @@
 <div class="card" style="max-width: 23rem;">
-  <img src="https://vosmarket.ru/uploads/posts/2018-03/1521706426_vosmarket_ru-ulitki.jpg" class="card-img-top" alt="...">
-  <div class="card-body">
+  <%= link_to recipe do %>
+    <img src="https://vosmarket.ru/uploads/posts/2018-03/1521706426_vosmarket_ru-ulitki.jpg" class="card-img-top" alt="...">
+    <div class="card-body">
 
-    <h5 class="card-title">
-      <%= link_to recipe.title, recipe_path(recipe) %> 
-      <% if recipe.created_at %>
-        <span class="badge badge-secondary">New</span>
-      <% end %>
-    </h5>
+      <h5 class="card-title">
+        <%= link_to recipe.title, recipe_path(recipe) %> 
+        <% if recipe.created_at %>
+          <span class="badge badge-secondary">New</span>
+        <% end %>
+      </h5>
 
-    <p class="card-text">
-      <%= recipe.description.html_safe %>
-    </p>
-  </div>
-  
+      <p class="card-text">
+        <%= recipe.description.html_safe %>
+      </p>
+
+      <div class="ingredients">
+        <% recipe.ingredients.each do |ingredient| %>
+          <%= link_to(@ingredient) do %>
+            <span class="badge badge-primary"><%= ingredient.title %></span>
+          <% end %>
+        <% end %>
+      </div>
+
+    </div>
+  <% end %>
+
   <div class="card-footer">
     <small class="text-muted">
-      Created: <%= recipe.created_at %> 
+      Создано: <%= recipe.created_at.to_formatted_s(:db)  %> 
       by @user</small>
   </div>
 </div>
