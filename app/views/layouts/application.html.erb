@@ -12,16 +12,19 @@
 
   <body>
     <nav class="navbar navbar-expand-lg navbar-light fixed-top" style="background-color: #2fb62f;">
-      <a class="navbar-brand" href="#">HealthBook</a>
+      <%= link_to 'HealthBook', recipes_path, class: 'navbar-brand'%>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
 
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
-          <li class="nav-item active">
-            <%= link_to 'Главная', recipes_path, class: 'nav-link'%>
-            
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Книга</a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <%= link_to 'Рецепты', recipes_path, class: 'nav-link'%>
+              <%= link_to 'Ингридиенты', ingredients_path, class: 'nav-link'%>
+            </div>
           </li>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Категории</a>
@@ -36,10 +39,16 @@
             </div>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Кухня</a>
+            <%= link_to 'Кухня', ingredients_kitchen_path, class: 'nav-link'%>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#">Поиск</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Для редакции</a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <%= link_to 'Предложенные рецепты', page_publish_need_path, class: 'nav-link'%>
+            </div>
           </li>
         </ul>
       </div>

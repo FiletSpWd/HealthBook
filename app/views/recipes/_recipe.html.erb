@@ -10,10 +10,6 @@
         <% end %>
       </h5>
 
-      <p class="card-text">
-        <%= recipe.description.html_safe %>
-      </p>
-
       <div class="ingredients">
         <% recipe.ingredients.each do |ingredient| %>
           <%= link_to(@ingredient) do %>
