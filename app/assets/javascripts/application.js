@@ -18,6 +18,7 @@
 //= require interactjs
 //= require popper
 //= require bootstrap
+//= require trix
 //= require_tree .
 
 var dragMoveListener;
