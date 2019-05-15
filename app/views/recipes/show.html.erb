@@ -20,6 +20,9 @@ at <%= @recipe.created_at.strftime('%B %d, %Y %H:%M') %>
           <div class="ingredient-value">2 kg</div>
         </li>
       <% end %>
+      <li>
+        <%= render @recipe.compositions %>
+      </li>
     </ul>
   </div>
 </div>

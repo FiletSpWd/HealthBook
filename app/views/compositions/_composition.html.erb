@@ -1,0 +1,15 @@
+<li>
+  <div class="ingredient">
+    <%= composition.ingredient.title %>
+  </div>
+  <div class="ingredient-value">
+    <%= composition.weight %>г 
+  </div>
+
+</li>
+
+<div>
+  <%= link_to 'edit', edit_composition_path(composition.id) %> 
+</div>
+
+

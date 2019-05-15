@@ -1,0 +1,12 @@
+<%= form_for @composition do |f| %>
+
+  <div class="form-group">
+    <%= f.label :weight,  'Количество' %>
+    <%= f.number_field :weight, class: 'form-control', min: 0 %>
+  </div>
+
+  <div class="form-group">
+    <%= f.submit 'Сохранить', class: 'btn btn-primary'%>
+  </div>
+
+<% end %>
