@@ -3,11 +3,11 @@ class Recipe < ApplicationRecord
   has_many :ingredients, through: :compositions
 
   def self.published
-	self.where('published = true')
+	  self.where('published = true')
   end
 
   def self.no_published
-	self.where('published = false')
+	  self.where('published = false')
   end
 
   def all_products
@@ -18,5 +18,14 @@ class Recipe < ApplicationRecord
     self.ingredients = names.split(',').map do |name|
       Ingredient.where(title: name.strip).first
     end
+  end
+
+  def printer
+    puts 'Hello, Im work'
+  end
+
+  # param = 'fat', 'sugar', 'protein', 'calories'
+  def get_params(param)
+    self.ingredients.sum(param)
   end
 end

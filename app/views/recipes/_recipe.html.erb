@@ -10,6 +10,19 @@
         <% end %>
       </h5>
 
+      <div class="row params">
+        <div class="col-sm-7">
+          Жиры: <%= recipe.get_params('fat')%> <br>
+          Белки: <%= recipe.get_params('protein')%> <br>
+          Углеводы: <%= recipe.get_params('sugar')%>
+        </div>
+        <div class="col-sm-5"><br>
+          Калории: <%= recipe.get_params('calories')%>
+        </div>
+      </div>
+
+      <br>
+
       <div class="ingredients">
         <% recipe.ingredients.each do |ingredient| %>
           <%= link_to(@ingredient) do %>
