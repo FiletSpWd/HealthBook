@@ -12,5 +12,6 @@ Rails.application.routes.draw do
   get '/ingredients/json_list', to: 'ingredients#json_list'
 
   resources :compositions
+  resources :categories
   get 'recipe/what_to_cook', to: 'recipes#what_to_cook', as: :what_to_cook
 end

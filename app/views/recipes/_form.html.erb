@@ -6,6 +6,12 @@
   </div>
 
   <div class="form-group">
+    <%= f.label :category_id, 'Категория' %>
+    <%= f.collection_select(:category_id, Category.all, :id, :title) %>
+  </div>
+
+
+  <div class="form-group">
     <%= f.label :description, 'Описание' %>
     <%= f.trix_editor :description, required: true, autofocus: true %>
   </div>

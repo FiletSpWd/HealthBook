@@ -10,10 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_15_064017) do
+ActiveRecord::Schema.define(version: 2019_05_16_215325) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "categories", force: :cascade do |t|
+    t.string "title"
+    t.string "cover"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "compositions", force: :cascade do |t|
     t.integer "ingredient_id"
@@ -41,6 +48,7 @@ ActiveRecord::Schema.define(version: 2019_05_15_064017) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "published", default: false
+    t.integer "category_id"
   end
 
 end

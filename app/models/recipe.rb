@@ -1,6 +1,7 @@
 class Recipe < ApplicationRecord
   has_many :compositions, class_name: "Composition", dependent: :destroy
   has_many :ingredients, through: :compositions
+  belongs_to :category
 
   def self.published
 	  self.where('published = true')
