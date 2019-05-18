@@ -35,6 +35,8 @@ gem 'jquery-rails'
 gem 'jquery-ui-rails'
 gem 'trix-rails', require: 'trix'
 
+gem 'devise'
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
