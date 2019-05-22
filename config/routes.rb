@@ -2,7 +2,9 @@ Rails.application.routes.draw do
   devise_for :users
   root 'recipes#index'
  
-  resources :recipes
+  resources :recipes do
+    resources :steps
+  end
   post '/recipes/publish', to: 'recipes#publish'
 
   get '/page/index', to: 'page#index'

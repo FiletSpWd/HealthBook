@@ -14,12 +14,6 @@ at <%= @recipe.created_at.strftime('%B %d, %Y %H:%M') %>
   </div>
   <div class="col-sm-6">
     <ul class="compositions">
-      <% @recipe.ingredients.each do |ingredient| %>
-        <li>
-          <div class="ingredient"><%= ingredient.title %></div>
-          <div class="ingredient-value">2 kg</div>
-        </li>
-      <% end %>
       <li>
         <%= render @recipe.compositions %>
       </li>
@@ -30,3 +24,8 @@ at <%= @recipe.created_at.strftime('%B %d, %Y %H:%M') %>
 <div class="jumbotron">    
   <%= @recipe.description.html_safe %>
 </div>
+
+<%= link_to 'Create step', new_recipe_step_path(recipe_id: @recipe.id)%>
+
+<%= render @recipe.steps.order("position")%>
+
