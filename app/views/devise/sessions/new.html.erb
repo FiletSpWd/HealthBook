@@ -1,26 +1,28 @@
-<h2>Log in</h2>
-
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+<div class="row">
+  <div class="col-sm-4"></div>
+  <div class="col-sm-4">
+    <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+      <%= render "devise/shared/error_messages", resource: resource %>
+      <div class="text-center">
+        <img class="mb-4" src="https://t3.ftcdn.net/jpg/01/24/19/88/240_F_124198813_6DR49tHyNu2PTosuisZHigywbGLylxfi.jpg" alt="" width="72" height="72">
+        <h1 class="h3 mb-3 font-weight-normal">Вход</h1>
+        <%= f.email_field :email, autofocus: true, autocomplete: "email", 
+                          placeholder: "E-mail", class: "form-group col-md-12" %>
+        <%= f.password_field :password, autocomplete: "new-password", 
+                              placeholder: "Пароль", class: "form-group col-md-12" %>
+      </div>
+      <% if devise_mapping.rememberable? %>
+        <div class="checkbox mb-3">
+          <%= f.check_box :remember_me %>
+          <%= f.label :remember_me, "Запомнить меня" %>
+        </div>
+      <% end %>
+      <div class="actions">
+        <%= f.submit "Войти", class: "btn btn-lg btn-success btn-block" %>
+      </div>
+      <div class="text-center">
+        или <%= link_to "зарегестрируйтесь", new_user_registration_path %>
+      </div>
+    <% end %>
   </div>
-
-  <div class="field">
-    <%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "current-password" %>
-  </div>
-
-  <% if devise_mapping.rememberable? %>
-    <div class="field">
-      <%= f.check_box :remember_me %>
-      <%= f.label :remember_me %>
-    </div>
-  <% end %>
-
-  <div class="actions">
-    <%= f.submit "Log in" %>
-  </div>
-<% end %>
-
-<%= render "devise/shared/links" %>
+</div>

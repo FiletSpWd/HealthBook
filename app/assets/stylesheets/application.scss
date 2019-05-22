@@ -24,6 +24,7 @@ body{
 .navbar{
 	margin-left: 5%;
 	margin-right: 5%;
+	padding: 0rem 1rem;
 }
 
 .carousel-caption{
@@ -46,4 +47,11 @@ body{
 
 .bot{
 	margin-right: 1.2%;
+}
+
+.form-signin {
+	width: 100%;
+	max-width: 330px;
+	padding: 15px;
+	margin: auto;
 }

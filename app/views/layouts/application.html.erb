@@ -49,16 +49,41 @@
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Для редакции</a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <%= link_to 'Предложенные рецепты', page_publish_need_path, class: 'nav-link'%>
-              <%= link_to 'Создать категорию', new_category_path, class: 'nav-link'%>
+              <%= link_to 'Предложенные рецепты', page_publish_need_path, class: 'dropdown-item'%>
+              <%= link_to 'Создать категорию', new_category_path, class: 'dropdown-item'%>
             </div>
           </li>
+        </ul>
+
+        <ul class="navbar navbar-nav navbar-right">
+          <% if user_signed_in? %>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <%= current_user.email%>!
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <%= link_to "Редактировать профиль", edit_user_registration_path, class: "dropdown-item" %>
+                <%= link_to "Выход", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
+              </div>
+            </li>
+          <% else %>
+            <li><%= link_to "Регистрация", new_user_registration_path, class: "nav-link" %></li>
+            <li><%= link_to "Вход", new_user_session_path, class: "nav-link" %></li>
+          <% end %>
         </ul>
       </div>
     </nav>
 
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
+    <div class="row">
+      <div class="col-md-12">
+        <% flash.each do |name, message| %>
+          <div class="alert <%= bootstrap_class_for(name) %>">
+            <button class="close" data-dismiss="alert">&times;</button>
+            <%= message %>
+          </div>
+        <% end %>
+      </div>
+    </div>
 
 
     <%= yield %>
