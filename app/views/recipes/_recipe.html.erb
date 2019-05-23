@@ -1,6 +1,11 @@
 <div class="card" style="max-width: 23rem;">
   <%= link_to recipe do %>
-    <img src="https://vosmarket.ru/uploads/posts/2018-03/1521706426_vosmarket_ru-ulitki.jpg" class="card-img-top" alt="...">
+
+    <%= image_tag recipe.photo.url(:thumb), class: "card-img-top"  if recipe.photo? %>
+    <% if !recipe.photo? %>
+      <img src="https://vosmarket.ru/uploads/posts/2018-03/1521706426_vosmarket_ru-ulitki.jpg" class="card-img-top" alt="...">
+    <% end %>
+
     <div class="card-body">
 
       <h5 class="card-title">

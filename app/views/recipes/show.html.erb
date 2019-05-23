@@ -10,7 +10,10 @@ at <%= @recipe.created_at.strftime('%B %d, %Y %H:%M') %>
 <hr>
 <div class="row" >
   <div class="col-sm-6">
-    <img src="https://vosmarket.ru/uploads/posts/2018-03/1521706426_vosmarket_ru-ulitki.jpg" class="card-img-top" alt="...">
+    <%= image_tag @recipe.photo.url(:large), class: "card-img-top"  if @recipe.photo? %>
+    <% if !@recipe.photo? %>
+      <img src="https://vosmarket.ru/uploads/posts/2018-03/1521706426_vosmarket_ru-ulitki.jpg" class="card-img-top" alt="...">
+    <% end %>
   </div>
   <div class="col-sm-6">
     <ul class="compositions">

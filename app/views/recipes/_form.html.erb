@@ -1,4 +1,4 @@
-<%= form_for @recipe do |f| %>
+<%= form_for @recipe, html: { multipart: true } do |f| %>
 
   <div class="form-group">
     <%= f.label :title, 'Название рецепта' %>

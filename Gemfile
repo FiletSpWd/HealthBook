@@ -28,12 +28,15 @@ gem 'jbuilder', '~> 2.5'
 # gem 'bcrypt', '~> 3.1.7'
 
 # Use ActiveStorage variant
-# gem 'mini_magick', '~> 4.8'
+gem 'mini_magick', '~> 4.8'
 
 gem 'bootstrap', '~> 4.3.1'
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
+# Use editor
 gem 'trix-rails', require: 'trix'
+# Use for upload image
+gem 'carrierwave', '~> 1.0'
 
 gem 'devise'
 

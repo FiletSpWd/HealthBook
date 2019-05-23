@@ -4,6 +4,8 @@ class Recipe < ApplicationRecord
   belongs_to :category
   has_many :steps, dependent: :destroy
 
+  mount_uploader :photo, ImageUploader
+
   def self.published
 	  self.where('published = true')
   end
