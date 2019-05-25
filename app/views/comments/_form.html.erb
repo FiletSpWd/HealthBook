@@ -1,0 +1,16 @@
+<br>
+<div class="row">
+  <div class="col-sm-7">
+    <%= form_for [ @recipe, @comment ] do |f| %>
+
+      <div class="form-group">
+        <%= f.text_area :content, class:"form-control" %>
+      </div>
+
+      <div class="form-group">
+        <%= f.submit 'Отправить комментарий' %>
+      </div>
+
+    <% end %>
+  </div>
+</div>

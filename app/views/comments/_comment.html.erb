@@ -1,0 +1,15 @@
+<div class="col-sm-9">
+  <div class="comment-wrap">
+    <div class="user_section">
+       <%= comment.user.email %><BR>
+       <%= comment.created_at %>
+    </div>        
+    <div class="comment-block">
+      <p class="comment-text">
+        <%= comment.content %>
+      </p>
+      <%= link_to 'Удалить',  recipe_comment_path(comment.recipe, comment),   
+                              method: :delete, data: { confirm: 'Вы уверены?' } %><BR>
+    </div>
+  </div>
+</div>

@@ -3,6 +3,7 @@ class Recipe < ApplicationRecord
   has_many :ingredients, through: :compositions
   belongs_to :category
   has_many :steps, dependent: :destroy
+  has_many :comments, dependent: :destroy
 
   mount_uploader :photo, ImageUploader
 

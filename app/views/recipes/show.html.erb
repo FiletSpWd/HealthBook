@@ -32,3 +32,13 @@ at <%= @recipe.created_at.strftime('%B %d, %Y %H:%M') %>
 
 <%= render @recipe.steps.order("position")%>
 
+<h3 align="center">Комментарии (<%= @recipe.comments.count %>)</h3>
+<%= render partial: 'comments/form' %>
+
+
+
+<div id="comments" class="comments">
+    <%= render @recipe.comments.order(created_at: :DESC)%>
+</div>
+
+

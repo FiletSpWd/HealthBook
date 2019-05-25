@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   root 'recipes#index'
  
   resources :recipes do
+    resources :comments
     resources :steps
   end
   post '/recipes/publish', to: 'recipes#publish'
