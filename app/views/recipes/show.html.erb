@@ -8,6 +8,9 @@ at <%= @recipe.created_at.strftime('%B %d, %Y %H:%M') %>
                                 data: { confirm: "Are you sure?" }, class: "btn btn-success"  %>
 <% end %>
 <hr>
+<%= link_to 'Добавить в избрнное', favorite_recipes_path(@recipe.id), method: :post, class: "btn btn-secondary"  %>
+<%= link_to 'Удалить из избранное', favorite_recipe_path(@recipe.id), method: :delete, data: { confirm: 'Вы хотите удалить из закладок?' }, class: "btn btn-secondary" %>
+<hr>
 <div class="row" >
   <div class="col-sm-6">
     <%= image_tag @recipe.photo.url(:large), class: "card-img-top"  if @recipe.photo? %>

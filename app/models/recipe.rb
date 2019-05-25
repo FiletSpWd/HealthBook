@@ -4,6 +4,7 @@ class Recipe < ApplicationRecord
   belongs_to :category
   has_many :steps, dependent: :destroy
   has_many :comments, dependent: :destroy
+  has_many :favorite_recipes, dependent: :destroy
 
   mount_uploader :photo, ImageUploader
 

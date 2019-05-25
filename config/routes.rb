@@ -17,5 +17,6 @@ Rails.application.routes.draw do
 
   resources :compositions
   resources :categories
+  resources :favorite_recipes
   get 'recipe/what_to_cook', to: 'recipes#what_to_cook', as: :what_to_cook
 end

@@ -63,6 +63,7 @@
               </a>
               <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                 <%= link_to "Редактировать профиль", edit_user_registration_path, class: "dropdown-item" %>
+                <%= link_to "Избранные рецепты", favorite_recipes_path, class: "dropdown-item" %>
                 <%= link_to "Выход", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
               </div>
             </li>
