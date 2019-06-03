@@ -8,6 +8,9 @@ Rails.application.routes.draw do
   end
   post '/recipes/publish', to: 'recipes#publish'
 
+  post '/marks/dislike', to: 'marks#dislike'
+  post '/marks/like', to: 'marks#like'
+
   get '/page/index', to: 'page#index'
   get '/page/publish_need', to: 'page#publish_need'
 

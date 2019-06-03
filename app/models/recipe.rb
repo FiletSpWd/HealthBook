@@ -5,6 +5,7 @@ class Recipe < ApplicationRecord
   has_many :steps, dependent: :destroy
   has_many :comments, dependent: :destroy
   has_many :favorite_recipes, dependent: :destroy
+  has_many :marks, dependent: :destroy
 
   mount_uploader :photo, ImageUploader
 
@@ -26,8 +27,8 @@ class Recipe < ApplicationRecord
     end
   end
 
-  def printer
-    puts 'Hello, Im work'
+  def get_mark
+    self.marks.sum(:rating)
   end
 
   # param = 'fat', 'sugar', 'protein', 'calories'

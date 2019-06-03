@@ -11,6 +11,14 @@ at <%= @recipe.created_at.strftime('%B %d, %Y %H:%M') %>
 <%= link_to 'Добавить в избрнное', favorite_recipes_path(@recipe.id), method: :post, class: "btn btn-secondary"  %>
 <%= link_to 'Удалить из избранное', favorite_recipe_path(@recipe.id), method: :delete, data: { confirm: 'Вы хотите удалить из закладок?' }, class: "btn btn-secondary" %>
 <hr>
+
+<%= button_to "Like", { action: "like", controller: "marks", recipe_id: @recipe.id },
+                                data: { confirm: "Are you sure?" }, class: "btn btn-success"  %> 
+<%= @recipe.get_mark %>
+<%= button_to "Dislike", { action: "dislike", controller: "marks", recipe_id: @recipe.id },
+                                data: { confirm: "Are you sure?" }, class: "btn btn-danger"  %>
+
+<hr>
 <div class="row" >
   <div class="col-sm-6">
     <%= image_tag @recipe.photo.url(:large), class: "card-img-top"  if @recipe.photo? %>
