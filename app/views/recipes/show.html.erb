@@ -10,6 +10,7 @@ at <%= @recipe.created_at.strftime('%B %d, %Y %H:%M') %>
 <hr>
 <%= link_to 'Добавить в избрнное', favorite_recipes_path(@recipe.id), method: :post, class: "btn btn-secondary"  %>
 <%= link_to 'Удалить из избранное', favorite_recipe_path(@recipe.id), method: :delete, data: { confirm: 'Вы хотите удалить из закладок?' }, class: "btn btn-secondary" %>
+<%= render partial: 'menus/form' %>
 <hr>
 
 <%= button_to "Like", { action: "like", controller: "marks", recipe_id: @recipe.id },

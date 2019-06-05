@@ -8,6 +8,8 @@ class RecipesController < ApplicationController
   def show
     @comment = Comment.new
     @comment.recipe_id = @recipe.id
+    @menu = Menu.new
+    @menu.recipe_id = @recipe.id
   end
 
   def new

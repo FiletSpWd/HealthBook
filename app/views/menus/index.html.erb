@@ -1,0 +1,45 @@
+<h1>Меню</h1>
+
+Рецептов в вашем меню: <%= @menus.count %>
+<hr>
+<div class="row"> 
+  <div class="col-sm-6">
+    <% Menu.get_dates.each do |date| %>
+    
+      <div class="row">
+        <div class="col-sm-6">
+          <h3><%= date.date_meal.strftime('%d.%m.%Y') %></h3>
+        </div>
+        <div class="col-sm-6">
+          <small>Итого калорий: <%= @menus.get_calories_of_day( date.date_meal)%> из </small>
+        </div>
+      </div>
+
+      <%= render @menus.get_menu_of_day(date.date_meal) %>
+      <hr>
+    <% end %>
+  </div>
+
+  <div class="col-sm-6">
+
+    <div class="frame"><div>
+      <div class="headline">
+			  <div>Потребление калорий сегодня:</div>
+		  </div>
+
+		  <div class="circle-big">
+			  <div class="text"><%= @menus.get_calories_of_day( Date.today) %><div class="small">калорий</div></div>
+			  <svg>
+				  <circle class="bg" cx="57" cy="57" r="52"></circle>
+				  <circle class="progress" cx="57" cy="57" r="52" style="stroke-dashoffset: <%= Menu.get_deg_of_circle %>;" ></circle>
+			  </svg>
+		  </div>
+
+		  
+		  </div>
+    </div>
+  </div>
+</div>
+
+
+</div>
