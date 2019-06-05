@@ -1,0 +1,19 @@
+<%= link_to 'Новый рецепт', new_advice_path %>
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Текст совета</th>
+      <th scope="col">Действия</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @advices.each do |advice| %>
+      <tr>
+        <th scope="row"><%= advice.id %></th>
+        <td><%= advice.summary %></td>
+        <td><%= link_to 'Edit', edit_advice_path(advice) %> | <%= link_to 'Delete', advice_path(advice), method: :delete , data: { confirm: 'Вы уверены?' } %></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
