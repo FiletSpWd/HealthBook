@@ -3,12 +3,17 @@ class RecipesController < ApplicationController
 
   def index
     if params[:search]
-      @search_results_recipes = Recipe.published.search_by_title(params[:search])
+      q = params[:search]
+      if !q.to_s.strip.empty?
+        @search_results_recipes = Recipe.published.search_by_title(q)
+      else
+        @search_results_recipes = Recipe.published
+      end
       respond_to do |format|
         format.js { render partial: 'search-results'}
       end
     else
-      @recipes = Recipe.published
+      @search_results_recipes = Recipe.published
     end
   end
 
