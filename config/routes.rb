@@ -20,6 +20,7 @@ Rails.application.routes.draw do
 
   resources :compositions
   resources :categories
+  resources :diets
   resources :favorite_recipes
   resources :advices
   resources :menus

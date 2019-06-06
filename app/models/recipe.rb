@@ -13,6 +13,8 @@ class Recipe < ApplicationRecord
   has_many :favorite_recipes, dependent: :destroy
   has_many :marks, dependent: :destroy
   has_many :menus, dependent: :destroy
+  has_many :recipe_diets, dependent: :destroy
+  has_many :diets, through: :recipe_diets
 
   mount_uploader :photo, ImageUploader
 

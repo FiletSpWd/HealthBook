@@ -1,0 +1,10 @@
+<div class="col-sm-4">
+  <%= link_to diet do %>
+    <div class="card" style="width: 18rem;">
+      <img src="https://e3.edimdoma.ru/data/recipes/0003/0161/30161-ed4_wide.jpg?1468693997" class="card-img-top" alt="...">
+      <div class="card-body">
+        <p class="card-text"><%= diet.title %> (<%= link_to 'edit', edit_diet_path(diet) %>)</p>
+      </div>
+    </div>
+  <% end %>
+</div>

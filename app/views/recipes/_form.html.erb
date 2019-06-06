@@ -10,6 +10,13 @@
     <%= f.collection_select(:category_id, Category.all, :id, :title) %>
   </div>
 
+  <div class="form-group">
+    <% Diet.all.each do |diet| %>
+      <%= check_box_tag 'diet_ids[]', diet.id -%>
+      <%= h diet.title -%>
+    <% end %>
+  </div>
+
 
   <div class="form-group">
     <%= f.label :description, 'Описание' %>
