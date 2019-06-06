@@ -4,10 +4,13 @@ class RecipesController < ApplicationController
   def index
     if params[:search]
       q = params[:search]
+      order = params[:desc] ? 'DESC' : 'ASC'
       if !q.to_s.strip.empty?
-        @search_results_recipes = Recipe.published.search_by_title(q)
-      else
-        @search_results_recipes = Recipe.published
+        @search_results_recipes = sorting_by_mark(order).search_by_title(q)
+      elsif params[:sorting_by_name]!='mark'
+        @search_results_recipes = Recipe.published.order(params[:sorting_by_name].to_s+ ' ' + order.to_s)
+      elsif params[:sorting_by_name]=='mark'
+        @search_results_recipes = sorting_by_mark(order)
       end
       respond_to do |format|
         format.js { render partial: 'search-results'}
@@ -81,6 +84,11 @@ class RecipesController < ApplicationController
   end
 
   private
+
+  def sorting_by_mark(order)
+      Recipe.left_outer_joins(:marks).group('recipes.id').published.order('sum(marks.rating) ' + order.to_s)
+  end
+
 
   def post_params
     params.require(:recipe).permit(:title, :photo, :description, :all_products, :category_id, :diet_ids)

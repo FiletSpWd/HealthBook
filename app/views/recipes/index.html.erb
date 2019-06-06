@@ -4,6 +4,14 @@
 
 <%= form_tag(recipes_path, method: "get", remote: true) do %>
   <%= text_field_tag :search, params[:search], placeholder: "Enter search term" %>
+  <%= radio_button_tag(:sorting_by_name, "title") %>
+  <%= label :sorting_by_name_title, 'По названию' %>
+  <%= radio_button_tag(:sorting_by_name, "mark") %>
+  <%= label :sorting_by_name_mark, 'По популярности' %>
+  <%= radio_button_tag(:sorting_by_name, "created_at") %>
+  <%= label :sorting_by_name_created_at, 'По дате' %>
+  <%= check_box_tag(:desc, "created_at") %>
+  <%= label :sorting_by_name_created_at, 'QQQQ' %>
   <%= submit_tag "Search" %>
 <% end %>
 
