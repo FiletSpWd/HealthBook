@@ -1,6 +1,14 @@
 <h2>Recipes</h2>
 <hr>
 <%= link_to 'Add new recipe', new_recipe_path%>
-<div class="row">
-	<%= render @recipes %>
+
+<%= form_tag(recipes_path, method: "get", remote: true) do %>
+  <%= text_field_tag :search, params[:search], placeholder: "Enter search term" %>
+  <%= submit_tag "Search" %>
+<% end %>
+
+<div class="row" id="recipe-all">
+  <%= render @recipes %>
+</div>
+<div class="row" id="search-results">
 </div>

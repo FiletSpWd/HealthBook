@@ -40,6 +40,8 @@ gem 'carrierwave', '~> 1.0'
 
 gem 'devise'
 
+gem 'pg_search'
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
