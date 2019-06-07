@@ -1,9 +1,7 @@
-<h2>Recipes</h2>
+<h2>Рецепты</h2>
 <hr>
-<%= link_to 'Add new recipe', new_recipe_path%>
-
 <%= form_tag(recipes_path, method: "get", remote: true) do %>
-  <%= text_field_tag :search, params[:search], placeholder: "Enter search term" %>
+  <%= text_field_tag :search, params[:search], placeholder: "Введите слово для поиска" %>
   <%= radio_button_tag(:sorting_by_name, "title") %>
   <%= label :sorting_by_name_title, 'По названию' %>
   <%= radio_button_tag(:sorting_by_name, "mark") %>
@@ -11,8 +9,8 @@
   <%= radio_button_tag(:sorting_by_name, "created_at") %>
   <%= label :sorting_by_name_created_at, 'По дате' %>
   <%= check_box_tag(:desc, "created_at") %>
-  <%= label :sorting_by_name_created_at, 'QQQQ' %>
-  <%= submit_tag "Search" %>
+  <%= label :sorting_by_name_created_at, 'Сортировать по возрастанию' %>
+  <%= submit_tag "Начать поиск" %>
 <% end %>
 
 <div class="row" id="recipe-all">

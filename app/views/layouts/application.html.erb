@@ -27,24 +27,14 @@
             </div>
           </li>
           <li class="nav-item dropdown">
-            <%= link_to 'Категории', categories_path, class: 'nav-link dropdown-toggle' %>
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Рецепты</a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="#">item</a>
-              <a class="dropdown-item" href="#">item</a>
-              <a class="dropdown-item" href="#">item</a>
-            </div>
-          </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Диеты</a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="#">item</a>
+              <%= link_to 'по типам', categories_path, class: 'dropdown-item'%>
+              <%= link_to 'по диетам', diets_path, class: 'dropdown-item'%>
             </div>
           </li>
           <li class="nav-item">
             <%= link_to 'Кухня', ingredients_kitchen_path, class: 'nav-link'%>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Поиск</a>
           </li>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Для редакции</a>
@@ -60,11 +50,13 @@
           <% if user_signed_in? %>
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <%= current_user.email%>!
+                Добро пожаловать, <%= current_user.name%>!
               </a>
               <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                 <%= link_to "Редактировать профиль", edit_user_registration_path, class: "dropdown-item" %>
+                <%= link_to "Добавить новый рецепт", new_recipe_path, class: "dropdown-item" %>
                 <%= link_to "Избранные рецепты", favorite_recipes_path, class: "dropdown-item" %>
+                <%= link_to "Моё меню", menus_path, class: "dropdown-item" %>
                 <%= link_to "Выход", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
               </div>
             </li>
