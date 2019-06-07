@@ -1,4 +1,4 @@
-<%= link_to 'Новый рецепт', new_advice_path %>
+<%= link_to 'Новый совет', new_advice_path %>
 <table class="table">
   <thead class="thead-dark">
     <tr>
@@ -12,7 +12,7 @@
       <tr>
         <th scope="row"><%= advice.id %></th>
         <td><%= advice.summary %></td>
-        <td><%= link_to 'Edit', edit_advice_path(advice) %> | <%= link_to 'Delete', advice_path(advice), method: :delete , data: { confirm: 'Вы уверены?' } %></td>
+        <td><%= link_to 'Изменить', edit_advice_path(advice) %> | <%= link_to 'Удалить', advice_path(advice), method: :delete , data: { confirm: 'Вы уверены?' } %></td>
     </tr>
     <% end %>
   </tbody>

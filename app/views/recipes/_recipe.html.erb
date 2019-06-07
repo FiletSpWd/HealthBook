@@ -11,7 +11,7 @@
       <h5 class="card-title">
         <%= link_to recipe.title, recipe_path(recipe) %> 
         <% if recipe.created_at %>
-          <span class="badge badge-secondary">New</span>
+          <%# <span class="badge badge-secondary">New</span> %>
         <% end %>
       </h5>
 
@@ -42,6 +42,6 @@
   <div class="card-footer">
     <small class="text-muted">
       Создано: <%= recipe.created_at.to_formatted_s(:db)  %> 
-      by @user</small>
+      by <%= link_to recipe.user.name, user_path(recipe.user.id)  %></small>
   </div>
 </div>

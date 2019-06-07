@@ -8,6 +8,7 @@ class Recipe < ApplicationRecord
   has_many :compositions, class_name: "Composition", dependent: :destroy
   has_many :ingredients, through: :compositions
   belongs_to :category
+  belongs_to :user
   has_many :steps, dependent: :destroy
   has_many :comments, dependent: :destroy
   has_many :favorite_recipes, dependent: :destroy

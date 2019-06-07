@@ -1,24 +1,41 @@
 <h2><%= @recipe.title %></h2>
 at <%= @recipe.created_at.strftime('%B %d, %Y %H:%M') %>
 <br>
-<%= link_to 'Изменить', edit_recipe_path, class: "btn btn-secondary" %>
-<%= link_to 'Удалить', recipe_path(@recipe), method: :delete , data: { confirm: 'Вы уверены?' }, class: "btn btn-danger" %>
+
+  <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+    <div class="btn-group mr-2" role="group" aria-label="Author group">
+      <%# <% if can? :update, @recipe %> 
+        <%= link_to image_tag('pencil.png'), edit_recipe_path, class: "btn btn-secondary" %>
+        <%= link_to image_tag('delete.png'), recipe_path(@recipe), method: :delete , data: { confirm: 'Вы уверены?' }, class: "btn btn-secondary" %>
+        <%= link_to image_tag('step.png'), new_recipe_step_path(recipe_id: @recipe.id), class: "btn btn-secondary" %>
+      <%# <% end %> 
+    </div>
+    <div class="btn-group mr-2" role="group" aria-label="User group">
+      <%= link_to image_tag('delete.png'), favorite_recipe_path(@recipe.id), method: :delete, data: { confirm: 'Вы хотите удалить из закладок?' }, class: "btn btn-secondary" %>
+      <%= link_to image_tag('bookmark.png'), favorite_recipes_path(@recipe.id), method: :post, class: "btn btn-secondary"  %>
+      <%= render partial: 'menus/form' %>
+    </div>
+    
+  </div>
+
 <% if !@recipe.published %>
   <%= button_to "Опубликовать", { action: "publish", id: @recipe.id },
-                                data: { confirm: "Are you sure?" }, class: "btn btn-success"  %>
+                                data: { confirm: "Вы уверены, что хотите опубликовать рецепт? Он точно отвечает все нормам?" }, class: "btn btn-success"  %>
 <% end %>
 <hr>
-<%= link_to 'Добавить в избрнное', favorite_recipes_path(@recipe.id), method: :post, class: "btn btn-secondary"  %>
-<%= link_to 'Удалить из избранное', favorite_recipe_path(@recipe.id), method: :delete, data: { confirm: 'Вы хотите удалить из закладок?' }, class: "btn btn-secondary" %>
-<%= render partial: 'menus/form' %>
-<hr>
-
-<%= button_to "Like", { action: "like", controller: "marks", recipe_id: @recipe.id },
-                                data: { confirm: "Are you sure?" }, class: "btn btn-success"  %> 
-<%= @recipe.get_mark %>
-<%= button_to "Dislike", { action: "dislike", controller: "marks", recipe_id: @recipe.id },
-                                data: { confirm: "Are you sure?" }, class: "btn btn-danger"  %>
-
+<div class="row"> 
+  <div class="col">
+    Оценка: <%= @recipe.get_mark %> <small>(оценило: <%= @recipe.marks.count %>)</small>
+  </div>
+  <div class="col-sm-1">
+    <%= button_to "Оценить на +1", { action: "like", controller: "marks", recipe_id: @recipe.id },
+                                data: { confirm: "Вы уверены, что хотите дать положительную отметку данному рецепту?" }, class: "btn btn-secondary"  %> 
+  </div>
+  <div class="col-sm-1">
+    <%= button_to "Оценить на -1", { action: "dislike", controller: "marks", recipe_id: @recipe.id },
+                                data: { confirm: "Вы уверены, что хотите дать положительную отметку данному рецепту?" }, class: "btn btn-secondary"  %> 
+  </div>
+</div>
 <hr>
 <div class="row" >
   <div class="col-sm-6">
@@ -40,14 +57,10 @@ at <%= @recipe.created_at.strftime('%B %d, %Y %H:%M') %>
   <%= @recipe.description.html_safe %>
 </div>
 
-<%= link_to 'Create step', new_recipe_step_path(recipe_id: @recipe.id)%>
-
 <%= render @recipe.steps.order("position")%>
 
 <h3 align="center">Комментарии (<%= @recipe.comments.count %>)</h3>
 <%= render partial: 'comments/form' %>
-
-
 
 <div id="comments" class="comments">
     <%= render @recipe.comments.order(created_at: :DESC)%>
