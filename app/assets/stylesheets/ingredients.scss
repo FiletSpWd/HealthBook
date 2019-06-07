@@ -3,7 +3,7 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 .dropzone {
-  height: 250px;
+  height: 600px;
   background-color: rgb(250, 250, 250);
   border: dashed 4px transparent;
   border-radius: 4px;
@@ -24,7 +24,9 @@
 .drag-drop {
   display: inline-block;
   min-width: 40px;
-  padding: 1em 0.75em;
+  // max-height: 10px;
+  padding: 2px;
+  // padding: 1em 0.75em;
 
   color: #fff;
   background-color: #29e;
@@ -39,4 +41,8 @@
 .drag-drop.can-drop {
   color: #000;
   background-color: #4e4;
+}
+
+.panel.panel-primary{
+  background-color: white;
 }

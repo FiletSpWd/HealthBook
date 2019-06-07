@@ -1,6 +1,13 @@
-<h1>Ingredients</h1>
-<% @ingredients.each do |ingredient| %> 
-	<%= ingredient.title %> <br>
-<% end %>
+<h1>Ингредиенты</h1>
+	<%= form_tag( ingredients_path , method: "get", remote: true) do %>
+    <%= text_field_tag :search, params[:search], placeholder: "Введите слово для поиска" %>
+    <%= submit_tag "Искать по названию" %>
+  <% end %>
 
-<small>source: http://easy-lose-weight.info/tablitsa-kaloriinosti-productov-pitaniya/</small>
+<div id="ingredient-all">
+	<%= render 'results'%>
+</div>
+<div id="search-results">
+</div>
+
+<div class="source: http://easy-lose-weight.info/tablitsa-kaloriinosti-productov-pitaniya/"></div>

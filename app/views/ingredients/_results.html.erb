@@ -1,0 +1,24 @@
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">Наименование продукта</th>
+    	<th scope="col">Категория</th>
+    	<th scope="col">Белки</th>
+    	<th scope="col">Жиры</th>
+			<th scope="col">Углеводы</th>
+			<th scope="col">Каллории</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @search_results_ingredients.each do |ingredient| %>
+      <tr>
+        <th scope="row"><%= ingredient.title %></th>
+  			<td><%= ingredient.category %></td>
+  			<td><%= ingredient.protein %></td>
+  			<td><%= ingredient.fat %></td>
+  			<td><%= ingredient.sugar %></td>
+  			<td><%= ingredient.calories %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
