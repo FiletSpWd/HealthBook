@@ -18,6 +18,8 @@ Rails.application.routes.draw do
   get '/ingredients/kitchen', to: 'ingredients#kitchen'
   get '/ingredients/json_list', to: 'ingredients#json_list'
 
+  resources :users, :only => [:show]
+
   resources :compositions
   resources :categories
   resources :diets

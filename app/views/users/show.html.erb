@@ -1,0 +1,41 @@
+<br>
+<h1>Профиль пользователя: <%= @user.name %></h1>
+<hr>
+<%# <%= image_tag @user.avatar.url(:profile), class: 'rounded-circle' if @user.avatar? %> 
+<%# <%= image_tag @user.avatar.url(:comment), class: 'rounded-circle' if @user.avatar? %> 
+<%# <%= image_tag @user.avatar.url(:thumb), class: 'rounded-circle' if @user.avatar? %> 
+<div class="row">
+  <div class="col-sm-4">
+    <img src="https://cdn2.iconfinder.com/data/icons/ios-7-icons/50/user_male2-512.png">
+  </div>
+  <div class="col" style="top:auto">
+    <h3>О пользователе</h3>
+    <div class="row">
+      <div class="col-sm-6">
+        Дата регистрации: <%= @user.created_at %> 
+      </div>
+      <div class="col-sm-6">
+        Дата рождения: <%= @user.date_of_birth %> 
+      </div>
+    </div>
+    <hr>
+    <h3>Статистика</h3>
+    <div class="row">
+      <div class="col-sm-6">
+        Создано рецептов: 0
+      </div>
+      <div class="col-sm-6">
+        Создано обсуждений: <%= @user.comments.count %>
+      </div>
+      <div class="col-sm-6">
+        Поставлено оценок: <%= @user.marks.count %>
+      </div>
+    </div>
+  </div>
+ </div>
+
+
+
+<hr>
+<h3>Рецепты пользователя</h3>
+<br>
