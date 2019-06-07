@@ -7,11 +7,19 @@
         <img class="mb-4" src="https://t3.ftcdn.net/jpg/01/24/19/88/240_F_124198813_6DR49tHyNu2PTosuisZHigywbGLylxfi.jpg" alt="" width="72" height="72">
         <h1 class="h3 mb-3 font-weight-normal">Регистрация</h1>
         <%= f.email_field :email, autofocus: true, autocomplete: "email", 
-                          placeholder: "E-mail", class: "form-group col-md-12" %>
+                          placeholder: "E-mail", class: "form-control col-md-12" %>
+        <%= f.text_field :name, autofocus: true, autocomplete: "Имя пользователя для отображения на сайте", 
+                          placeholder: "Имя пользователя для отображения на сайте", class: "form-control col-md-12" %>
+        <%= f.date_field :date_of_birth, as: :date, value: f.object.try(:strftime,"%m/%d/%Y"), autocomplete: "Дата рождения", 
+                          placeholder: "Дата рождения", class: "form-control col-md-12" %>
+        <%= radio_button_tag(:sex, "male") %>
+        <%= label :sex, 'мужчина' %>
+        <%= radio_button_tag(:sex, "female") %>
+        <%= label :sex, 'женщина' %>
         <%= f.password_field :password, autocomplete: "new-password", 
-                              placeholder: "Пароль (7 знаков и более)", class: "form-group col-md-12" %>
+                              placeholder: "Пароль (7 знаков и более)", class: "form-control col-md-12" %>
         <%= f.password_field :password_confirmation, autocomplete: "new-password", 
-                              placeholder: "Подтверждение пароля", class: "form-group col-md-12" %>
+                              placeholder: "Подтверждение пароля", class: "form-control col-md-12" %>
   <%# <div class="checkbox mb-3">
     <label>
       <input type="checkbox" value="remember-me"> Remember me
