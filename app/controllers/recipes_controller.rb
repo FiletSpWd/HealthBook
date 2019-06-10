@@ -36,7 +36,7 @@ class RecipesController < ApplicationController
     @recipe.user = current_user
     respond_to do |format|
       if @recipe.save
-        format.html { redirect_to @recipe, notice: 'Recipe was successfully created.' }
+        format.html { redirect_to @recipe, notice: 'Рецепт создан!' }
         format.json { render :show, status: :created, location: @recipe }
       else
         format.html { render :new }
@@ -51,7 +51,7 @@ class RecipesController < ApplicationController
   def update
   	respond_to do |format|
       if @recipe.update_attributes(post_params)
-        format.html { redirect_to @recipe, notice: 'Recipe was successfully updated.' }
+        format.html { redirect_to @recipe, notice: 'Рецепт обновлен!' }
         format.json { render :show, status: :ok, location: @recipe }
       else
         format.html { render :edit }
@@ -63,7 +63,7 @@ class RecipesController < ApplicationController
   def destroy
     @recipe.destroy!
     respond_to do |format|
-      format.html { redirect_to recipes_path, notice: 'Recipe was successfully destroy'}
+      format.html { redirect_to recipes_path, notice: 'Рецепт удален.'}
       format.json { head :no_content }
     end
   end
@@ -72,7 +72,7 @@ class RecipesController < ApplicationController
   	@recipe.published = true
   	@recipe.save
   	respond_to do |format|
-      format.html { redirect_to @recipe, notice: 'Recipe was successfully published.' }
+      format.html { redirect_to @recipe, notice: 'Рецепт опубликован.' }
       format.json { render :show, status: :ok, location: @recipe }
     end
   end

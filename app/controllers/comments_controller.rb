@@ -11,14 +11,14 @@ class CommentsController < ApplicationController
     @comment.recipe_id = params[:recipe_id]
 
       if @comment.save
-        redirect_to recipe_path(@comment.recipe), notice: 'Comment was successfully created.'  
+        redirect_to recipe_path(@comment.recipe), notice: 'Комментарий опубликован!'  
       end
   end
 
   def destroy
     @comment.destroy
     respond_to do |format|
-      format.html { redirect_to @comment.recipe, notice: 'Comment was successfully destroyed.' }
+      format.html { redirect_to @comment.recipe, notice: 'Комментарий удален!' }
       format.json { head :no_content }
     end
   end

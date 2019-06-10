@@ -13,7 +13,7 @@ class AdvicesController < ApplicationController
     @advice = Advice.new(post_params)
     respond_to do |format|
       if @advice.save
-        format.html { redirect_to advices_path, notice: 'Совет успешно создан!.' }
+        format.html { redirect_to advices_path, notice: 'Совет успешно создан!' }
         format.json { render :index, status: :created, location: @advice }
       else
         format.html { render :new }
@@ -28,7 +28,7 @@ class AdvicesController < ApplicationController
   def update
   	respond_to do |format|
       if @advice.update_attributes(post_params)
-        format.html { redirect_to advices_path, notice: 'Совет был успешно обновлен.' }
+        format.html { redirect_to advices_path, notice: 'Совет был обновлен.' }
       else
         format.html { render :edit }
         format.json { render json: @advice.errors, status: :unprocessable_entity }
@@ -39,7 +39,7 @@ class AdvicesController < ApplicationController
   def destroy
     @advice.destroy!
     respond_to do |format|
-      format.html { redirect_to advices_path, notice: 'Совет был удален!'}
+      format.html { redirect_to advices_path, notice: 'Совет удален.'}
       format.json { head :no_content }
     end
   end

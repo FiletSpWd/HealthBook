@@ -20,7 +20,7 @@ class DietsController < ApplicationController
 
     respond_to do |format|
       if @diet.save
-        format.html { redirect_to diets_path, notice: 'Category was successfully created.' }
+        format.html { redirect_to diets_path, notice: 'Диета создана' }
         format.json { render :index, status: :created, location: @diet }
       else
         format.html { render :new }
@@ -32,7 +32,7 @@ class DietsController < ApplicationController
   def update
     respond_to do |format|
       if @diet.update(diet_params)
-        format.html { redirect_to diets_path, notice: 'Category was successfully updated.' }
+        format.html { redirect_to diets_path, notice: 'Диета обновлена' }
         format.json { render :index, status: :ok, location: @diet }
       else
         format.html { render :edit }
@@ -44,7 +44,7 @@ class DietsController < ApplicationController
   def destroy
     @diet.destroy
     respond_to do |format|
-      format.html { redirect_to diets_url, notice: 'Category was successfully destroyed.' }
+      format.html { redirect_to diets_url, notice: 'Диета удалена' }
       format.json { head :no_content }
     end
   end

@@ -9,7 +9,7 @@ class StepsController < ApplicationController
     @step = set_recipe.steps.new(step_params)
     respond_to do |format|
       if @step.save
-        format.html { redirect_to(@step.recipe, :notice => 'Comment was successfully created.') }
+        format.html { redirect_to(@step.recipe, :notice => 'Шаг создан!') }
         format.xml  { render :xml => @step, :status => :created, :location => @step.recipe }
       else
         format.html { render :action => "new" }
@@ -24,7 +24,7 @@ class StepsController < ApplicationController
   def update
     respond_to do |format|
       if @step.update_attributes(step_params)
-        format.html { redirect_to(@step.recipe, :notice => 'Comment was successfully updated.') }
+        format.html { redirect_to(@step.recipe, :notice => 'Шаг изменен.') }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }
