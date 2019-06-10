@@ -1,5 +1,5 @@
 <h2><%= @recipe.title %></h2>
-at <%= @recipe.created_at.strftime('%B %d, %Y %H:%M') %>
+at <%= @recipe.created_at.to_formatted_s(:db) %> by <%= @recipe.user.name%>
 <br>
 
   <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">

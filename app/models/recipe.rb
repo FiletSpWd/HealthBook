@@ -41,8 +41,16 @@ class Recipe < ApplicationRecord
     self.marks.sum(:rating)
   end
 
+  def self.more_popular
+    self.joins(:marks).group('recipes.id').published.order('sum(marks.rating) desc')
+  end
+
+  def self.random_recipes
+    self.order('RANDOM()').limit(2)
+  end
+
   # param = 'fat', 'sugar', 'protein', 'calories'
   def get_params(param)
-    self.ingredients.sum(param)
+    sprintf('%.2f', self.ingredients.sum(param) / 100)
   end
 end

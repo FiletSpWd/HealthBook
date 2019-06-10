@@ -1,3 +1,78 @@
+<div id="carouselExampleFade" class="carousel slide carousel-fade" data-ride="carousel">
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <div class="row">
+        <div class="col-sm-4">
+          <%= image_tag Recipe.more_popular.first.photo.url(:large), class: "d-block w-100"  if Recipe.more_popular.first.photo? %>
+          <% if !Recipe.more_popular.first.photo? %>
+            <img src="https://vosmarket.ru/uploads/posts/2018-03/1521706426_vosmarket_ru-ulitki.jpg" class="d-block w-100">
+          <% end %>
+        </div>
+        <div class="col-sm-8">
+          <div class="body-recipe">
+            <h3 align="center"> <%= Recipe.more_popular.first.title %> <span class="badge badge-success">Популярный</span></h3>
+            <b>Категория: </b> <%= link_to  Recipe.more_popular.first.category.title, 
+                                            category_path(Recipe.more_popular.first.category) %>
+            <%= Recipe.more_popular.first.description.html_safe %>
+              <div class="ingredients">
+                <% Recipe.more_popular.first.ingredients.each do |ingredient| %>
+                  <%= link_to(@ingredient) do %>
+                    <span class="badge badge-primary"><%= ingredient.title %></span>
+                  <% end %>
+                <% end %>
+              </div>
+            <%= link_to 'Открыть рецепт', recipe_path(Recipe.more_popular.first), class: 'btn btn-success btn-lg btn-block bot fix-bot'%>
+          </div>
+        </div>
+      </div>
+    </div>
+      
+
+    <% Recipe.random_recipes.each do |item|%>
+    <% if item != Recipe.more_popular.first %>
+      <div class="carousel-item">
+        <div class="row">
+          <div class="col-sm-4">
+            <%= image_tag item.photo.url(:large), class: "d-block w-100"  if item.photo? %>
+            <% if !item.photo? %>
+              <img src="https://vosmarket.ru/uploads/posts/2018-03/1521706426_vosmarket_ru-ulitki.jpg" class="d-block w-100">
+            <% end %>
+          </div>
+          <div class="col-sm-8">
+            <div class="body-recipe">
+              <h3 align="center"><%= item.title %></h3>
+              <b>Категория: </b> <%= link_to  Recipe.more_popular.first.category.title, 
+                                            category_path(Recipe.more_popular.first.category) %>
+              <%= item.description.html_safe %>
+              <div class="ingredients">
+                <% item.ingredients.each do |ingredient| %>
+                  <%= link_to(@ingredient) do %>
+                    <span class="badge badge-primary"><%= ingredient.title %></span>
+                  <% end %>
+                <% end %>
+              </div>
+              <%= link_to 'Открыть рецепт', recipe_path(item), class: 'btn btn-success btn-lg btn-block bot fix-bot'%>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+    <% end %>
+  </div>
+  <a class="carousel-control-prev" href="#carouselExampleFade" role="button" data-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="sr-only">Назад</span>
+  </a>
+  <a class="carousel-control-next" href="#carouselExampleFade" role="button" data-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="sr-only">Вперуд</span>
+  </a>
+</div>
+<hr>
 <div class="row">
   <%= render Advice.random_advice%>
+</div>
+<hr>
+<div class="row">
+  <%= render Recipe.all.order('created_at desc').limit(9) %>
 </div>

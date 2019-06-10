@@ -10,8 +10,9 @@
   <%= label :sorting_by_name_created_at, 'По дате' %>
   <%= check_box_tag(:desc, "created_at") %>
   <%= label :sorting_by_name_created_at, 'Сортировать по возрастанию' %>
-  <%= submit_tag "Начать поиск" %>
+  <%= submit_tag "Начать поиск",  class: "btn btn-secondary fix-right" %>
 <% end %>
+<hr>
 
 <div class="row" id="recipe-all">
   <%= render @search_results_recipes %>
