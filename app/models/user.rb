@@ -14,8 +14,28 @@ class User < ApplicationRecord
   validates :phone,:presence => true,
                  :numericality => true,
                  :length => { :minimum => 11, :maximum => 11 }
+  
                  
-  # validates_format_of :phone,
-  # :with => /\(?[0-9]{2}\)?-[0-9]{3}-[0-9]{4}/,
-  # :message => "- Phone numbers must be in xx-xxx-xxxx format."
+  def get_calories
+    calories = 10*self.weigth+6.25*self.growth-5*age
+    if self.sex=='male'
+      calories += 5
+    else
+      calories -= 161
+    end    
+    sprintf('%.2f', calories*self.activity.to_f)
+  end
+
+  def get_difference
+    diff=get_calories.to_f - self.menus.get_calories_of_day(Date.today).to_f
+  end
+
+  def age
+    now = Time.now.utc.to_date
+    now.year - self.date_of_birth.year - (self.date_of_birth.to_date.change(:year => now.year) > now ? 1 : 0)
+  end
+
+  def get_days_menu
+    self.menus.select(:date_meal).group(:date_meal).order(date_meal: :desc)
+  end
 end

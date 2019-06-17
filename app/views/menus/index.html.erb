@@ -4,14 +4,14 @@
 <hr>
 <div class="row"> 
   <div class="col-sm-6">
-    <% Menu.get_dates.each do |date| %>
+    <% current_user.get_days_menu.each do |date| %>
     
       <div class="row">
         <div class="col-sm-6">
           <h3><%= date.date_meal.strftime('%d.%m.%Y') %></h3>
         </div>
         <div class="col-sm-6">
-          <small>Итого калорий: <%= @menus.get_calories_of_day( date.date_meal)%> из 2490</small>
+          <small>Итого калорий: <%= @menus.get_calories_of_day( date.date_meal).to_f %> из <%= current_user.get_calories %></small>
         </div>
       </div>
 
@@ -21,8 +21,8 @@
   </div>
 
   <div class="col-sm-6">
-    Для правильного питания Вам необходимо потреблять: 2490 калорий в день <br>
-    Сегодня осталось ещё съесть: <%= 2940 - @menus.get_calories_of_day( Date.today) %> <br>
+    Для правильного питания Вам необходимо потреблять: <%= current_user.get_calories %> калорий в день <br>
+    Сегодня осталось ещё съесть: <b><%= current_user.get_difference %> калорий </b><br>
     <div class="frame"><div>
       <div class="headline">
 			  <div>Потребление калорий сегодня:</div>
