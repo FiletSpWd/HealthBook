@@ -8,8 +8,9 @@
         <h1 class="h3 mb-3 font-weight-normal">Регистрация</h1>
         <%= f.email_field :email, autofocus: true, autocomplete: "email", 
                           placeholder: "E-mail", class: "form-control col-md-12" %>
-        <%= f.text_field :name, autofocus: true, autocomplete: "Имя пользователя для отображения на сайте", 
-                          placeholder: "Имя пользователя для отображения на сайте", class: "form-control col-md-12" %>
+        <%= f.text_field :name, autofocus: true, autocomplete: "Имя пользователя на сайте", 
+                          placeholder: "Имя пользователя на сайте", class: "form-control col-md-12" %>
+        <%= f.text_field :phone, autocomplete: 'Телефон', placeholder: 'Телефон c форматом 80ХХХХХХХХХ', class: 'form-control col-md-12'%>
         <%= f.date_field :date_of_birth, as: :date, value: f.object.try(:strftime,"%m/%d/%Y"), autocomplete: "Дата рождения", 
                           placeholder: "Дата рождения", class: "form-control col-md-12" %>
         <%= radio_button_tag(:sex, "male") %>

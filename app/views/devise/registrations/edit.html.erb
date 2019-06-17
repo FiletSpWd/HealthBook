@@ -64,6 +64,13 @@
         <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
           <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
         <% end %>
+
+        <div class="row">
+          <div class="form-group col-md-12">
+            <%= f.label :phone, 'Телефон' %>
+            <%= f.text_field :phone, autocomplete: 'Телефон', placeholder: '80ХХХХХХХХХ', class: 'form-control col-md-12'%>
+          </div>
+        </div>
   
         <div class="row">
           <div class="form-group col-md-12">
