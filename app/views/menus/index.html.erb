@@ -1,18 +1,22 @@
-<h1>Меню</h1>
+<div class="row">
+  <div class="col-sm-8">
+    
+  </div>
+  <div class="col-sm-4">
+    <button type="button" class="btn btn-outline-success">Блюд: <%= @menus.count %></button>
+    <button type="button" class="btn btn-outline-success">Норма: <%= current_user.get_calories %> калорий в день</button>
+  </div>
+</div>
 
-Рецептов в вашем меню: <%= @menus.count %>
-<hr>
 <div class="row"> 
   <div class="col-sm-6">
     <% current_user.get_days_menu.each do |date| %>
     
       <div class="row">
         <div class="col-sm-6">
-          <h3><%= date.date_meal.strftime('%d.%m.%Y') %></h3>
+          <h4>Меню на <%= date.date_meal.strftime('%d.%m.%Y') %></h4>
         </div>
-        <div class="col-sm-6">
-          <small>Итого калорий: <%= @menus.get_calories_of_day( date.date_meal).to_f %> из <%= current_user.get_calories %></small>
-        </div>
+        
       </div>
 
       <%= render @menus.get_menu_of_day(date.date_meal) %>
@@ -21,11 +25,36 @@
   </div>
 
   <div class="col-sm-6">
-    Для правильного питания Вам необходимо потреблять: <%= current_user.get_calories %> калорий в день <br>
-    Сегодня осталось ещё съесть: <b><%= current_user.get_difference %> калорий </b><br>
 
-    <div class="counter" data-cp-percentage="<%= current_user.get_percent %>" data-cp-color="#00bfeb"> </div>
+    <div class="card mb-3" style="max-width: 540px;">
+      <div class="row no-gutters">
+        <div class="col-md-5">
+          <div class="counter" data-cp-percentage="<%= current_user.get_percent %>" data-cp-color="#2fb62f"> </div>
+        </div>
+        <div class="col-md-7">
+          <div class="card-body">
+            <h5 class="card-title">Сегодня</h5>
+            <p class="card-text"> Сегодня осталось ещё съесть: <br><b><%= current_user.get_difference %> калорий </b></p>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <% current_user.get_days_menu.each do |date| %>
+
+      <div class="progress">
+        <div class="progress-bar" role="progressbar" style="width: <%= (@menus.get_calories_of_day( date.date_meal).to_f * 100 / current_user.get_calories.to_f).to_s %>%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+      </div>
+      <div class="row">
+        <div class="col-sm-8">
+          <small class="static">Итого калорий съедено за <u><%= date.date_meal.strftime('%d.%m.%Y') %></u>: <b><%= @menus.get_calories_of_day( date.date_meal).to_f %></b></small>
+        </div>
+        <div class="col-sm-4">
+          <small>Кол-во блюд в меню: <%= @menus.get_menu_of_day(date.date_meal).count %></small>
+        </div>
+      </div>
+
+    <% end %>
   </div>
-</div>
 </div>
 
