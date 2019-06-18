@@ -340,3 +340,11 @@ Ingredient.create(title: 'Яйцо перепелиное', category: 'Яйца'
 Ingredient.create(title: 'Яйцо страусиное', category: 'Яйца', protein: 12.4, fat: 11.5, sugar: 0.8, calories: 118)
 Ingredient.create(title: 'Яйцо утиное', category: 'Яйца', protein: 13.5, fat: 14.1, sugar: 0.2, calories: 176)
 Ingredient.create(title: 'Яичный порошок', category: 'Яйца', protein: 45.3, fat: 37.3, sugar: 5.1, calories: 545)
+
+p "Removing existing #{Role.all.count} roles"
+Role.destroy_all
+p "Creating 3 roles"
+[:newuser, :admin, :editor].each do |role|
+  Role.create(name: role)
+end
+p "Should have created 3 Roles, roles created: #{Role.all.count}"

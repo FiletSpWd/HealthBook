@@ -1,4 +1,6 @@
 class User < ApplicationRecord
+  rolify
+  resourcify
   extend Devise::Models
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
@@ -15,6 +17,11 @@ class User < ApplicationRecord
                  :numericality => true,
                  :length => { :minimum => 11, :maximum => 11 }
   
+  after_create :assign_default_role
+
+  def assign_default_role
+    self.add_role(:newuser) if self.roles.blank?
+  end
                  
   def get_calories
     calories = 10*self.weigth+6.25*self.growth-5*age
