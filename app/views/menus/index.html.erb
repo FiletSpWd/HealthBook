@@ -24,10 +24,8 @@
     Для правильного питания Вам необходимо потреблять: <%= current_user.get_calories %> калорий в день <br>
     Сегодня осталось ещё съесть: <b><%= current_user.get_difference %> калорий </b><br>
 
-    <div class="counter" data-cp-percentage="20" data-cp-color="#00bfeb"> </div>
+    <div class="counter" data-cp-percentage="<%= current_user.get_percent %>" data-cp-color="#00bfeb"> </div>
   </div>
 </div>
-
-
 </div>
 

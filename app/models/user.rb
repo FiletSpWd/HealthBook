@@ -28,6 +28,11 @@ class User < ApplicationRecord
 
   def get_difference
     diff=get_calories.to_f - self.menus.get_calories_of_day(Date.today).to_f
+    sprintf('%.2f', diff)
+  end
+  
+  def get_percent
+    percent=100-get_difference.to_f*100/get_calories.to_f
   end
 
   def age

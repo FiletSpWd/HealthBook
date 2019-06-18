@@ -12,8 +12,12 @@ class MenusController < ApplicationController
     @menu = Menu.new(menu_params)
     @menu.user_id = current_user.id
     recipe = Recipe.find @menu.recipe_id
-    if @menu.save
-      redirect_to recipe,  notice: 'Рецепт добавлен в меню! ' 
+    if current_user.get_difference.to_f >= @menu.get_calories.to_f
+      if @menu.save
+        redirect_to recipe,  notice: 'Рецепт добавлен в меню! ' 
+      end
+    else 
+      redirect_to recipe,  alert: 'Рецепт не добавлен в меню! Слишком много калорий! Задумайтесь о том, чтобы изменить меню или пейте больше воды. Вода утоляет ложное чувство голод.' 
     end
   end
 
