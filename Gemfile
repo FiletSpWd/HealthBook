@@ -39,6 +39,7 @@ gem 'trix-rails', require: 'trix'
 gem 'carrierwave', '~> 1.0'
 
 gem 'devise'
+gem 'cancancan'
 gem 'rolify'
 
 gem 'pg_search'
