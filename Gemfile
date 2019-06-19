@@ -41,6 +41,7 @@ gem 'carrierwave', '~> 1.0'
 gem 'devise'
 gem 'cancancan'
 gem 'rolify'
+gem 'rails_admin'
 
 gem 'pg_search'
 
