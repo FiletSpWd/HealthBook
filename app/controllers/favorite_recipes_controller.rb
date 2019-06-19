@@ -1,5 +1,6 @@
 class FavoriteRecipesController < ApplicationController
   before_action :set_favorite_recipe, only: [:destroy]
+  before_action :authenticate_user!
 
   def index
     @recipes = Recipe.joins(:favorite_recipes).where('favorite_recipes.user_id = ?', current_user.id)

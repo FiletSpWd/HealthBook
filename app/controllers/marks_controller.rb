@@ -1,4 +1,5 @@
 class MarksController < ApplicationController
+  before_action :authenticate_user!
 
   def like
     @mark = set_recipe.marks.new(user_id: current_user.id, rating: 1)

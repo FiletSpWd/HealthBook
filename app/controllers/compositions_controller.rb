@@ -1,5 +1,6 @@
 class CompositionsController < ApplicationController
   before_action :set_composition, only: [:edit, :update]
+  before_action :authenticate_user!
 
   def edit
   end

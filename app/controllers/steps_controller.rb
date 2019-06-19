@@ -1,5 +1,6 @@
 class StepsController < ApplicationController
   before_action :set_step, only: [ :edit, :destroy, :update]
+  before_action :authenticate_user!
 
   def new
     @step = set_recipe.steps.new

@@ -1,5 +1,6 @@
 class MenusController < ApplicationController
-
+  before_action :authenticate_user!
+  
   def index
     @menus = Menu.joins(:recipe, :user).where('menus.user_id = ?', current_user.id).order(date_meal: :desc)
   end

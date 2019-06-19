@@ -1,5 +1,6 @@
 class AdvicesController < ApplicationController
   before_action :set_advice, only: [:edit, :destroy, :update]
+  before_action :authenticate_user!
 
   def index
     @advices = Advice.all
