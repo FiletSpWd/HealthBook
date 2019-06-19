@@ -13,12 +13,12 @@
 
   <div class="field">
     <%= f.label :title, 'Название категории' %>
-    <%= f.text_field :title %>
+    <%= f.text_field :title, class: 'form-control' %>
   </div>
 
   <div class="form-group">
     <%= f.label :description, 'Описание' %>
-    <%= f.trix_editor :description, class: 'form-control' %>
+    <%= f.trix_editor :description, required: true, autofocus: true %>
   </div>
 
   <div class="form-group">
@@ -26,7 +26,7 @@
     <%= f.file_field :cover, class: 'form-control' %>
   </div>
 
-  <div class="actions">
-    <%= f.submit %>
+  <div class="form-group">
+    <%= f.submit 'Сохранить', class: 'btn btn-primary'%>
   </div>
 <% end %>

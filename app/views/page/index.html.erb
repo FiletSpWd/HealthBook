@@ -65,7 +65,7 @@
   </a>
   <a class="carousel-control-next" href="#carouselExampleFade" role="button" data-slide="next">
     <span class="carousel-control-next-icon" aria-hidden="true"></span>
-    <span class="sr-only">Вперуд</span>
+    <span class="sr-only">Вперёд</span>
   </a>
 </div>
 <hr>
@@ -74,5 +74,5 @@
 </div>
 <hr>
 <div class="row">
-  <%= render Recipe.all.order('created_at desc').limit(9) %>
+  <%= render Recipe.published.order('created_at desc').limit(9) %>
 </div>

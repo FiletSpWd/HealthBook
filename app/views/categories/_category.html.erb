@@ -1,9 +1,12 @@
 <div class="col-sm-4">
   <%= link_to category do %>
-    <div class="card" style="width: 18rem;">
+    <div class="card" >
       <img src="https://e3.edimdoma.ru/data/recipes/0003/0161/30161-ed4_wide.jpg?1468693997" class="card-img-top" alt="...">
       <div class="card-body">
-        <p class="card-text"><%= category.title %> (<%= link_to 'edit', edit_category_path(category) %>)</p>
+        <% if can? :update, category %>
+          <%= link_to image_tag('pencil.png'), edit_category_path(category),  class: "close" %>
+        <% end %>
+        <p class="card-text"><%= category.title %> </p>
       </div>
     </div>
   <% end %>

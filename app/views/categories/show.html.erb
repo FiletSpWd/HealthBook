@@ -1,4 +1,9 @@
-<h2><%= @category.title %></h2>
+<h2>
+  <%= @category.title %> 
+  <% if @category.recipes.count == 0 %>
+    (пока данная категория пуста)
+  <% end %>
+</h2>
 
 <div class="row">
   <%= render @category.recipes %>

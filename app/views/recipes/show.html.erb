@@ -2,41 +2,65 @@
 at <%= @recipe.created_at.to_formatted_s(:db) %> by <%= @recipe.user.name%>
 <br>
 
+<% if user_signed_in? %>
   <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
     <div class="btn-group mr-2" role="group" aria-label="Author group">
-      <%# <% if can? :update, @recipe %> 
+      <% if can? :update, @recipe %>
         <%= link_to image_tag('pencil.png'), edit_recipe_path, class: "btn btn-secondary" %>
         <%= link_to image_tag('delete.png'), recipe_path(@recipe), method: :delete , data: { confirm: 'Вы уверены?' }, class: "btn btn-secondary" %>
         <%= link_to image_tag('step.png'), new_recipe_step_path(recipe_id: @recipe.id), class: "btn btn-secondary" %>
-      <%# <% end %> 
+      <% end %>
     </div>
     <div class="btn-group mr-2" role="group" aria-label="User group">
-      <%= link_to image_tag('delete.png'), favorite_recipe_path(@recipe.id), method: :delete, data: { confirm: 'Вы хотите удалить из закладок?' }, class: "btn btn-secondary" %>
-      <%= link_to image_tag('bookmark.png'), favorite_recipes_path(@recipe.id), method: :post, class: "btn btn-secondary"  %>
-      <%= render partial: 'menus/form' %>
+      <% if @recipe.published %>
+        <% if current_user.favorite_recipes.where('recipe_id=?', @recipe).count == 1 %>
+          <%= link_to image_tag('delete.png'), favorite_recipe_path(@recipe.id), 
+                                              method: :delete, data: { confirm: 'Вы хотите удалить из закладок?' }, 
+                                              class: "btn btn-secondary" %>
+        <% else %>
+          <%= link_to image_tag('bookmark.png'), favorite_recipes_path(@recipe.id), method: :post, 
+                                                class: "btn btn-secondary"  %>
+        <% end %>
+        <%= render partial: 'menus/form' %>
+      <% end %>
     </div>
-    
   </div>
+<% end %>
 
-<% if !@recipe.published %>
+<% if (!@recipe.published) && (can? :manage, @recipe) %>
   <%= button_to "Опубликовать", { action: "publish", id: @recipe.id },
-                                data: { confirm: "Вы уверены, что хотите опубликовать рецепт? Он точно отвечает все нормам?" }, class: "btn btn-success"  %>
+                                data: { confirm: "Вы уверены, что хотите опубликовать рецепт? 
+                                Он точно отвечает все нормам?" }, class: "btn btn-success"  %>
 <% end %>
 <hr>
+
+<% if @recipe.published %>
 <div class="row"> 
-  <div class="col">
+  <div class="col-sm-9">
     Оценка: <%= @recipe.get_mark %> <small>(оценило: <%= @recipe.marks.count %>)</small>
   </div>
-  <div class="col-sm-1">
-    <%= button_to "Оценить на +1", { action: "like", controller: "marks", recipe_id: @recipe.id },
-                                data: { confirm: "Вы уверены, что хотите дать положительную отметку данному рецепту?" }, class: "btn btn-secondary"  %> 
-  </div>
-  <div class="col-sm-1">
-    <%= button_to "Оценить на -1", { action: "dislike", controller: "marks", recipe_id: @recipe.id },
-                                data: { confirm: "Вы уверены, что хотите дать положительную отметку данному рецепту?" }, class: "btn btn-secondary"  %> 
-  </div>
+
+  <% if @recipe.marks.where('user_id=?', current_user).count != 1 %>
+    <div class="col-sm-1 no-margin">
+      <%= button_to "💗", { action: "like", controller: "marks", recipe_id: @recipe.id },
+                                  data: { confirm: "Вы уверены, что хотите дать положительную отметку 
+                                  данному рецепту?" }, class: "btn btn-outline-success btn-block"  %> 
+    </div>
+    <div class="col-sm-1 no-margin">
+      <%= button_to "💔", { action: "dislike", controller: "marks", recipe_id: @recipe.id },
+                                  data: { confirm: "Вы уверены, что хотите дать отрицательную отметку 
+                                  данному рецепту?" }, class: "btn btn-outline-success btn-block"  %> 
+    </div>
+  <% else %>
+    <div class="col-sm-2 no-margin">
+      <small><i>(Вы уже давали оценку) </i></small>
+    </div>
+  <% end %>
 </div>
 <hr>
+<% end %>
+
+
 <div class="row" >
   <div class="col-sm-6">
     <%= image_tag @recipe.photo.url(:large), class: "card-img-top"  if @recipe.photo? %>
@@ -57,13 +81,20 @@ at <%= @recipe.created_at.to_formatted_s(:db) %> by <%= @recipe.user.name%>
   <%= @recipe.description.html_safe %>
 </div>
 
-<%= render @recipe.steps.order("position")%>
-
-<h3 align="center">Комментарии (<%= @recipe.comments.count %>)</h3>
-<%= render partial: 'comments/form' %>
-
-<div id="comments" class="comments">
-    <%= render @recipe.comments.order(created_at: :DESC)%>
-</div>
+<% if @recipe.published %>
+  <%= render @recipe.steps.order("position")%>
+  <% if @recipe.comments.count == 0 %>
+    <h3 align="center">Комментариев пока нет</h3>
+  <% else %>
+    <h3 align="center">Комментарии (<%= @recipe.comments.count %>)</h3>
+  <% end %>
+  <% if user_signed_in? %>
+    <%= render partial: 'comments/form' %>
+  <% end %>
+  
+  <div id="comments" class="comments">
+      <%= render @recipe.comments.order(created_at: :DESC)%>
+  </div>
+<% end %>
 
 

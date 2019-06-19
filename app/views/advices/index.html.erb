@@ -12,7 +12,11 @@
       <tr>
         <th scope="row"><%= advice.id %></th>
         <td><%= advice.summary %></td>
-        <td><%= link_to 'Изменить', edit_advice_path(advice) %> | <%= link_to 'Удалить', advice_path(advice), method: :delete , data: { confirm: 'Вы уверены?' } %></td>
+        <td>
+            <%= link_to image_tag('pencil.png'), edit_advice_path(advice) %>     
+            <%= link_to image_tag('delete.png'), advice_path(advice), method: :delete , 
+                                              data: { confirm: 'Вы уверены?' }  %>
+        </td>
     </tr>
     <% end %>
   </tbody>

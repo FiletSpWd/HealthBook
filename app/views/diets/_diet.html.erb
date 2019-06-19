@@ -1,10 +1,14 @@
 <div class="col-sm-4">
-  <%= link_to diet do %>
-    <div class="card" style="width: 18rem;">
+  <div class="card">
+    <%= link_to diet do %>
       <img src="https://e3.edimdoma.ru/data/recipes/0003/0161/30161-ed4_wide.jpg?1468693997" class="card-img-top" alt="...">
-      <div class="card-body">
-        <p class="card-text"><%= diet.title %> (<%= link_to 'edit', edit_diet_path(diet) %>)</p>
-      </div>
+    <% end %>
+    <div class="card-body">
+      <% if can? :update, diet %>
+        <%= link_to image_tag('pencil.png'), edit_diet_path(diet),  class: "close" %>
+      <% end %>
+      <h5 class="card-title"><%= link_to diet.title, diet_path(diet) %></h5>
+      <p class="card-text"><%= diet.description.html_safe %></p>
     </div>
-  <% end %>
+  </div> 
 </div>
