@@ -41,6 +41,8 @@ at <%= @recipe.created_at.to_formatted_s(:db) %> <%= link_to '@'+@recipe.user.na
     Оценка: <%= @recipe.get_mark %> <small>(оценило: <%= @recipe.marks.count %>)</small>
   </div>
 
+
+  <% if user_signed_in? %>
   <% if @recipe.marks.where('user_id=?', current_user).count != 1 %>
     <div class="col-sm-1 no-margin">
       <%= button_to "💗", { action: "like", controller: "marks", recipe_id: @recipe.id },
@@ -56,6 +58,7 @@ at <%= @recipe.created_at.to_formatted_s(:db) %> <%= link_to '@'+@recipe.user.na
     <div class="col-sm-2 no-margin">
       <small><i>(Вы уже давали оценку) </i></small>
     </div>
+  <% end %>
   <% end %>
 </div>
 <hr>
