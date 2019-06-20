@@ -13,10 +13,12 @@
         <%= f.text_field :phone, autocomplete: 'Телефон', placeholder: 'Телефон c форматом 80ХХХХХХХХХ', class: 'form-control col-md-12'%>
         <%= f.date_field :date_of_birth, as: :date, value: f.object.try(:strftime,"%m/%d/%Y"), autocomplete: "Дата рождения", 
                           placeholder: "Дата рождения", class: "form-control col-md-12" %>
-        <%= radio_button_tag(:sex, "male") %>
-        <%= label :sex, 'мужчина' %>
-        <%= radio_button_tag(:sex, "female") %>
-        <%= label :sex, 'женщина' %>
+
+        <%= f.radio_button(:sex, "male") %>
+        <%= label :sex_male, 'мужчина' %>
+        <%= f.radio_button(:sex, "female") %>
+        <%= label :sex_female, 'женщина' %>
+        
         <%= f.password_field :password, autocomplete: "new-password", 
                               placeholder: "Пароль (7 знаков и более)", class: "form-control col-md-12" %>
         <%= f.password_field :password_confirmation, autocomplete: "new-password", 

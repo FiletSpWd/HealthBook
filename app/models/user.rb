@@ -19,6 +19,8 @@ class User < ApplicationRecord
   
   after_create :assign_default_role
 
+  mount_uploader :avatar, AvatarUploader
+
   def assign_default_role
     self.add_role(:newuser) if self.roles.blank?
   end

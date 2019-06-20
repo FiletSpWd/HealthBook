@@ -6,7 +6,8 @@
 <%# <%= image_tag @user.avatar.url(:thumb), class: 'rounded-circle' if @user.avatar? %> 
 <div class="row">
   <div class="col-sm-4">
-    <img src="https://cdn2.iconfinder.com/data/icons/ios-7-icons/50/user_male2-512.png">
+    <%= image_tag @user.avatar.url(:large), class: "card-img-top"  if @user.avatar? %>
+    <%# <img src="https://cdn2.iconfinder.com/data/icons/ios-7-icons/50/user_male2-512.png"> %>
   </div>
   <div class="col" style="top:auto">
     <h3>О пользователе</h3>
@@ -39,6 +40,13 @@
 <hr>
 <h3>Рецепты пользователя</h3>
 <br>
+<% if can? :update, @user %>
+<h3>Неопубликованные</h3>
 <div class="row">
-  <%= render  @user.recipes%>
+  <%= render  @user.recipes.no_published %>
+</div>
+<hr>
+<% end %>
+<div class="row">
+  <%= render  @user.recipes.published %>
 </div>
