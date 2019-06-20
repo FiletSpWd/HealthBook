@@ -1,4 +1,5 @@
-<%= form_with(model: @category, local: true) do |f| %>
+<%= form_with(model: @category, local: true, html: { multipart: true }) do |f| %>
+
   <% if @category.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@category.errors.count, "error") %> prohibited this category from being saved:</h2>

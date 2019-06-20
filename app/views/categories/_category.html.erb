@@ -1,7 +1,7 @@
 <div class="col-sm-4">
   <%= link_to category do %>
     <div class="card" >
-      <img src="https://e3.edimdoma.ru/data/recipes/0003/0161/30161-ed4_wide.jpg?1468693997" class="card-img-top" alt="...">
+      <%= image_tag category.cover.url(:thumb), class: "card-img-top"  if category.cover? %>
       <div class="card-body">
         <% if can? :update, category %>
           <%= link_to image_tag('pencil.png'), edit_category_path(category),  class: "close" %>
