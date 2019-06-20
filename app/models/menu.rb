@@ -3,7 +3,7 @@ class Menu < ApplicationRecord
   belongs_to :user
 
   def get_calories
-    calories = self.weight * self.recipe.get_params('calories').to_f
+    calories = self.weight/100 * self.recipe.get_params('calories').to_f
     sprintf('%.2f', calories)
   end
 
