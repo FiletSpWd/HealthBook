@@ -5,9 +5,12 @@
     <% if !recipe.photo? %>
       <img src="https://vosmarket.ru/uploads/posts/2018-03/1521706426_vosmarket_ru-ulitki.jpg" class="card-img-top" alt="...">
     <% end %>
-
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item active" aria-current="page"><%= link_to '#'+recipe.category.title, recipe.category %></li>
+      </ol>
+    </nav>
     <div class="card-body">
-
       <h5 class="card-title">
         <%= link_to recipe.title, recipe_path(recipe) %> 
         <% if recipe.created_at %>
