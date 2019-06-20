@@ -2,7 +2,11 @@ class MenusController < ApplicationController
   before_action :authenticate_user!
   
   def index
-    @menus = Menu.joins(:recipe, :user).where('menus.user_id = ?', current_user.id).order(date_meal: :desc)
+    if current_user.empty_fields?
+      @menus = Menu.joins(:recipe, :user).where('menus.user_id = ?', current_user.id).order(date_meal: :desc)
+    else
+      redirect_to edit_user_registration_path,  alert: 'Заполните данные роста, веса и активности для расчета нормы калорий!  ' 
+    end
   end
 
   def new

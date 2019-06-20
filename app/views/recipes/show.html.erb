@@ -1,7 +1,6 @@
 <h2><%= @recipe.title %></h2>
 at <%= @recipe.created_at.to_formatted_s(:db) %> by <%= @recipe.user.name%>
 <br>
-
 <% if user_signed_in? %>
   <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
     <div class="btn-group mr-2" role="group" aria-label="Author group">
@@ -21,7 +20,9 @@ at <%= @recipe.created_at.to_formatted_s(:db) %> by <%= @recipe.user.name%>
           <%= link_to image_tag('bookmark.png'), favorite_recipes_path(@recipe.id), method: :post, 
                                                 class: "btn btn-secondary"  %>
         <% end %>
-        <%= render partial: 'menus/form' %>
+        <% if current_user.empty_fields? %>
+          <%= render partial: 'menus/form' %>
+        <% end %>
       <% end %>
     </div>
   </div>

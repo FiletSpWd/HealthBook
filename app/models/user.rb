@@ -22,6 +22,10 @@ class User < ApplicationRecord
   def assign_default_role
     self.add_role(:newuser) if self.roles.blank?
   end
+
+  def empty_fields?
+    result = !activity.nil? && !growth.nil? && !weigth.nil?
+  end
                  
   def get_calories
     calories = 10*self.weigth+6.25*self.growth-5*age
@@ -43,8 +47,7 @@ class User < ApplicationRecord
   end
 
   def age
-    now = Time.now.utc.to_date
-    now.year - self.date_of_birth.year - (self.date_of_birth.to_date.change(:year => now.year) > now ? 1 : 0)
+    ((Time.zone.now - self.date_of_birth.to_time) / 1.year.seconds).floor
   end
 
   def get_days_menu
