@@ -7,7 +7,8 @@
     <% end %>
     <nav aria-label="breadcrumb">
       <ol class="breadcrumb">
-        <li class="breadcrumb-item active" aria-current="page"><%= link_to '#'+recipe.category.title, recipe.category %></li>
+        <li class="breadcrumb-item active"><%= link_to '#'+recipe.category.title, recipe.category %></li>
+   
       </ol>
     </nav>
     <div class="card-body">
@@ -45,6 +46,6 @@
   <div class="card-footer">
     <small class="text-muted">
       Создано: <%= recipe.created_at.to_formatted_s(:db)  %> 
-      by <%= link_to recipe.user.name, user_path(recipe.user.id)  %></small>
+      by <%= link_to recipe.user.name, user_path(recipe.user.id)  %> [рейтинг: <%= recipe.get_mark %>] </small>
   </div>
 </div>

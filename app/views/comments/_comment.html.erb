@@ -6,7 +6,7 @@
           <%= image_tag comment.user.avatar.url(:thumb), class: 'rounded-circle' if comment.user.avatar? %><br>
         </div>
         <div class="col-2">
-          <%= comment.user.name %><br>
+          <%= link_to comment.user.name, comment.user %><br>
           <%= comment.created_at.strftime("%m/%d/%Y") %><br>
           <%= comment.created_at.strftime("%T:%M") %>
         </div>
