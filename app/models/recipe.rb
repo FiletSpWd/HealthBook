@@ -33,7 +33,7 @@ class Recipe < ApplicationRecord
 
   def all_products=(names)
     self.ingredients = names.split(',').map do |name|
-      Ingredient.where(title: name.strip).first
+      Ingredient.where(title: name.strip).first_or_create
     end
   end
 
@@ -51,6 +51,6 @@ class Recipe < ApplicationRecord
 
   # param = 'fat', 'sugar', 'protein', 'calories'
   def get_params(param)
-    sprintf('%.2f', self.ingredients.sum(param) / 100)
+    res = sprintf('%.2f', ingredients.sum("("+param+"/100)*compositions.weight")/compositions.sum('weight')*100)    
   end
 end

@@ -19,6 +19,8 @@
         <% end %>
       </h5>
 
+
+      <% if recipe.get_params('calories')!='NaN'%>
       <div class="row params">
         <div class="col-sm-7">
           Жиры: <%= recipe.get_params('fat')%> <br>
@@ -29,6 +31,7 @@
           <h4 class="cal"><%= recipe.get_params('calories')%> кал </h4>
         </div>
       </div>
+      <% end %>
 
       <br>
 

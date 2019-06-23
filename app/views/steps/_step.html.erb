@@ -1,5 +1,7 @@
 <div class="jumbotron">
   <h3> <%= step.title %></h3>
   <p>  <%= step.description.html_safe %> </p> 
-  <small><%= link_to "Изменить", edit_recipe_step_path(step.recipe, step) %>| <%= link_to 'Удалить',  recipe_step_path(step.recipe, step),   method: :delete, data: { confirm: 'Are you sure?' } %></small>
+  <% if can? :update, step.recipe_id %>
+    <small><%= link_to "Изменить", edit_recipe_step_path(step.recipe, step) %>| <%= link_to 'Удалить',  recipe_step_path(step.recipe, step),   method: :delete, data: { confirm: 'Are you sure?' } %></small>
+  <% end %>
 </div>

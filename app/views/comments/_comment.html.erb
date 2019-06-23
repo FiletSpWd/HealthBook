@@ -16,8 +16,10 @@
       <p class="comment-text">
         <%= comment.content %>
       </p>
-      <%= link_to 'Удалить',  recipe_comment_path(comment.recipe, comment),   
+      <% if can? :update, comment %>
+        <%= link_to 'Удалить',  recipe_comment_path(comment.recipe, comment),   
                               method: :delete, data: { confirm: 'Вы уверены?' } %><BR>
+      <% end %>
     </div>
   </div>
 </div>

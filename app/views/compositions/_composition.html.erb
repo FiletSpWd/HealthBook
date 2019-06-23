@@ -3,7 +3,11 @@
     <%= composition.ingredient.title %>
   </div>
   <div class="ingredient-value">
+    <% if composition.weight.nil? %>
+      по вкусу
+    <% else %>
     <%= composition.weight %>г  
+    <% end %>
     <% if can? :update, composition.recipe %>
       <%= link_to image_tag('pencil.png'), edit_composition_path(composition.id) %> 
     <% end %>

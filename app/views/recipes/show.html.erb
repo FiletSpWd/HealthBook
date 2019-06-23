@@ -80,6 +80,19 @@ at <%= @recipe.created_at.to_formatted_s(:db) %> <%= link_to '@'+@recipe.user.na
     </ul>
     <hr>
     <%= link_to "#"+@recipe.category.title, @recipe.category %>
+    <% if @recipe.get_params('calories')!='NaN'%>
+    <hr>
+    <div class="row params jumbotron" style="margin: 0;">
+        <div class="col-sm-7">
+          Жиры: <%= @recipe.get_params('fat')%> <br>
+          Белки: <%= @recipe.get_params('protein')%> <br>
+          Углеводы: <%= @recipe.get_params('sugar')%>
+        </div>
+        <div class="col-sm-5"><br>
+          <h4 class="cal"><%= @recipe.get_params('calories')%> кал </h4>
+        </div>
+      </div>
+    <% end %>
   </div>
 </div>
 
@@ -87,8 +100,9 @@ at <%= @recipe.created_at.to_formatted_s(:db) %> <%= link_to '@'+@recipe.user.na
   <%= @recipe.description.html_safe %>
 </div>
 
+<%= render @recipe.steps.order("position")%>
+
 <% if @recipe.published %>
-  <%= render @recipe.steps.order("position")%>
   <% if @recipe.comments.count == 0 %>
     <h3 align="center">Комментариев пока нет</h3>
   <% else %>

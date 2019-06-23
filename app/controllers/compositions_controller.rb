@@ -8,7 +8,7 @@ class CompositionsController < ApplicationController
   def update
     respond_to do |format|
       if @composition.update_attributes(post_params)
-        format.html { redirect_to get_recipe, notice: 'Recipe was successfully updated.' }
+        format.html { redirect_to get_recipe, notice: 'Состав рецепта был обновлен.' }
       else
         format.html { render :edit }
       end
