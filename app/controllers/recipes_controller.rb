@@ -7,11 +7,13 @@ class RecipesController < ApplicationController
       q = params[:search]
       order = params[:desc] ? 'DESC' : 'ASC'
       if !q.to_s.strip.empty?
-        @search_results_recipes = sorting_by_mark(order).search_by_title(q)
+        @search_results_recipes = Recipe.search_by_title(q)
       elsif params[:sorting_by_name]!='mark'
         @search_results_recipes = Recipe.published.order(params[:sorting_by_name].to_s+ ' ' + order.to_s)
       elsif params[:sorting_by_name]=='mark'
-        @search_results_recipes = sorting_by_mark(order)
+        @search_results_recipes = sorting_by_mark(order)     
+      else
+        @search_results_recipes = Recipe.published
       end
       respond_to do |format|
         format.js { render partial: 'search-results'}

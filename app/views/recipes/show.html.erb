@@ -96,9 +96,11 @@ at <%= @recipe.created_at.to_formatted_s(:db) %> <%= link_to '@'+@recipe.user.na
   </div>
 </div>
 
+<% if @recipe.description.length >10 %>
 <div class="jumbotron">    
   <%= @recipe.description.html_safe %>
 </div>
+<% end %>
 
 <%= render @recipe.steps.order("position")%>
 

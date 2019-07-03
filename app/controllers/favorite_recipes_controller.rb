@@ -16,14 +16,15 @@ class FavoriteRecipesController < ApplicationController
     @favorite_recipe.recipe_id = params[:format]
     recipe = Recipe.find @favorite_recipe.recipe_id
     if @favorite_recipe.save
-      redirect_to recipe,  notice: 'Рецепт был добавлен в избранные!'
+      redirect_to recipe,  notice: 'Рецепт был добавлен в библиотеку!'
     end
   end
 
   def destroy
+    recipe = Recipe.find @favorite_recipe.recipe_id
     @favorite_recipe.destroy
     respond_to do |format|
-      format.html { redirect_to favorite_recipes_url, notice: 'Рецепт был удален из библиотеки' }
+      format.html { redirect_to recipe, notice: 'Рецепт был удален из библиотеки' }
       format.json { head :no_content }
     end
   end
